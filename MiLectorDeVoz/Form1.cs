@@ -26,5 +26,15 @@ namespace MiLectorDeVoz
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            reader.SpeakAsync(label1.Text); //leemos el contenido
+        }
     }
 }
