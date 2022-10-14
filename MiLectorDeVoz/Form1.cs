@@ -36,5 +36,50 @@ namespace MiLectorDeVoz
         {
             reader.SpeakAsync(label1.Text); //leemos el contenido
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Stream str;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((str = openFileDialog.OpenFile()) != null)
+                {
+                    string fname = openFileDialog.FileName;
+                    string filetxt = File.ReadAllText(fname);
+                    label1.Text = filetxt;
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (reader != null)
+            {
+                reader.Dispose();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (reader != null)
+            {
+                if (reader.State == SynthesizerState.Speaking)
+                {
+                    reader.Pause();
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (reader != null)
+            {
+                if (reader.State == SynthesizerState.Paused)
+                {
+                    reader.Resume();
+                }
+            }
+        }
     }
 }
